@@ -23,25 +23,41 @@ def rows(repo,path,delimiter=','):
 def value(row,key):return float(row[key].replace(',','.'))
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':12,'axes.spines.top':False,'axes.spines.right':False,'axes.spines.left':False,'axes.grid':False})
 GREEN='#286250'; OCHRE='#c16a3f'; MUTED='#91a89c'
-def finish(fig,name):
- fig.set_facecolor('#faf9f5');fig.tight_layout(pad=1.8);fig.savefig(ASSETS/(name+'.png'),dpi=160,facecolor=fig.get_facecolor());plt.close(fig)
+def finish(fig,name,rect=(0,0,1,1)):
+ fig.set_facecolor('#faf9f5');fig.tight_layout(pad=1.8,rect=rect);fig.savefig(ASSETS/(name+'.png'),dpi=160,facecolor=fig.get_facecolor());plt.close(fig)
 repo='acervo-de-contribuicoes-Heitor-Fernandes-Simepar'
-r=rows(repo,'01_estacao_et/resultados/calibracao_empirica/tabelas/metricas_calibracao_empirica.csv',';')
-fig,axes=plt.subplots(1,2,figsize=(10,4.7))
-for ax,var,title,unit in zip(axes,['temperatura_bulbo_seco','umidade_relativa'],['Temperatura','Umidade relativa'],['°C','pontos percentuais']):
- sel=[next(x for x in r if x['variavel']==var and x['metodo']==m) for m in ['bruto','ajuste_linear_global']]
- vals=[value(x,'rmse') for x in sel]
- ax.set_facecolor('#faf9f5');ax.barh(['Original','Ajuste na campanha'],vals,color=[MUTED,GREEN],height=.5);ax.invert_yaxis();ax.set_xlim(0,max(vals)*1.28);ax.set_title(title,loc='left',fontweight='bold',pad=18);ax.set_xlabel('RMSE · '+unit);ax.grid(axis='x',alpha=.15);ax.set_axisbelow(True)
- for i,v in enumerate(vals):ax.text(v+max(vals)*.035,i,f'{v:.3f}'.replace('.',','),va='center',fontsize=12)
-finish(fig,'estacao-et')
+# Forest plot: uncertainty and signed error, not only a fit-on-sample score.
+fig,axes=plt.subplots(1,2,figsize=(12,6.2))
+for ax,folder,title,unit,color in zip(axes,['temperatura','umidade'],['Temperatura do ar','Umidade relativa'],['°C','pontos percentuais'],[GREEN,OCHRE]):
+ path='01_estacao_et/resultados/'+folder+'/tabelas/intervalos_confianca_'+folder+'_bootstrap_blocos.csv'
+ r=rows(repo,path,';');ax.set_facecolor('#faf9f5')
+ for y,metric in enumerate(['vies','mae','rmse']):
+  row=next(x for x in r if x['metrica']==metric)
+  v,lo,hi=[value(row,k) for k in ['estimativa','limite_inferior_95','limite_superior_95']]
+  ax.errorbar(v,y,xerr=[[v-lo],[hi-v]],fmt='o',color=color,ecolor=color,markersize=9,elinewidth=3,capsize=6,zorder=3)
+  text=f'{v:.2f}  [{lo:.2f}; {hi:.2f}]'.replace('.',',')
+  ax.annotate(text,(v,y),xytext=(0,20),textcoords='offset points',ha='center',color=color,fontsize=12,fontweight='bold')
+ ax.set_yticks([0,1,2],['Viés','MAE','RMSE']);ax.set_ylim(2.6,-.8);ax.axvline(0,color='#b8c3b9',lw=1,ls='--');ax.set_title(title,loc='left',fontweight='bold',fontsize=15,pad=14);ax.set_xlabel(unit);ax.grid(axis='x',alpha=.15);ax.set_axisbelow(True)
+ ax.set_xlim((-.12,.76) if folder=='temperatura' else (-2.5,5.2))
+fig.suptitle('Quanto a estação difere da verificação?',fontsize=18,fontweight='bold',x=.04,ha='left',color='#193b32')
+fig.text(.04,.045,'Ponto = estimativa  ·  Haste = IC de 95% por bootstrap em blocos de 96 observações',fontsize=11,color='#53685c')
+fig.text(.04,.012,'Viés: desvio médio  |  MAE: erro absoluto médio  |  RMSE: maior peso para desvios grandes',fontsize=10.5,color='#53685c')
+finish(fig,'estacao-et',rect=(0,.085,1,.96))
 
 r=rows(repo,'02_umidade_solo/contribuicoes/validacao_pc01_pc03_cs_20261002_a_20261007/resultados/tabelas/validacao_temporal_70_30.csv')
-fig,ax=plt.subplots(figsize=(10,4.7));ax.set_facecolor('#faf9f5')
-for i,(model,label,color) in enumerate([('linear_treino70','Linear',GREEN),('quadratico_treino70','Quadrático',OCHRE)]):
- vals=[value(next(x for x in r if x['sensor']==sensor and x['modelo']==model),'rmse_pp') for sensor in ['plugfild','PC03/azul']]
- pos=[j+(i-.5)*.32 for j in range(2)];ax.bar(pos,vals,width=.29,label=label,color=color)
- for x,v in zip(pos,vals):ax.text(x,v+.035,f'{v:.2f}'.replace('.',','),ha='center',fontsize=12)
-ax.set_xticks([0,1],['PC01 / plugfild','PC03 / azul']);ax.set_ylim(0,2);ax.set_ylabel('RMSE · pontos percentuais');ax.set_title('Validação nos 30% finais da campanha',loc='left',fontweight='bold',pad=20);ax.legend(frameon=False,loc='upper left');ax.grid(axis='y',alpha=.13);ax.set_axisbelow(True);finish(fig,'umidade-solo')
+fig,axes=plt.subplots(1,2,figsize=(12,6.2))
+for ax,key,title in zip(axes,['rmse_pp','bias_pp'],['Tamanho do erro · RMSE','Direção do desvio · viés']):
+ ax.set_facecolor('#faf9f5')
+ for sensor,label,color,marker,offset in [('plugfild','PC01 / plugfild',GREEN,'o',-21),('PC03/azul','PC03 / azul',OCHRE,'D',12)]:
+  vals=[value(next(x for x in r if x['sensor']==sensor and x['modelo']==m),key) for m in ['original','linear_treino70','quadratico_treino70']]
+  ax.plot([0,1,2],vals,color=color,marker=marker,ms=7,lw=2.3,label=label,zorder=3)
+  for x,v in enumerate(vals):ax.annotate(f'{v:.2f}'.replace('.',','),(x,v),xytext=(0,offset),textcoords='offset points',ha='center',color=color,fontweight='bold',fontsize=12)
+ ax.set_xticks([0,1,2],['Original','Linear','Quadrático']);ax.set_xlim(-.3,2.3);ax.set_ylim((-2,17) if key=='rmse_pp' else (-9,17));ax.set_ylabel('pontos percentuais');ax.set_title(title,loc='left',fontweight='bold',fontsize=14,pad=18);ax.axhline(0,color='#a8b9a9',ls='--',lw=1);ax.grid(axis='y',alpha=.14);ax.set_axisbelow(True)
+fig.suptitle('O que muda depois do ajuste?',fontsize=18,fontweight='bold',x=.04,ha='left',color='#193b32')
+handles,labels=axes[0].get_legend_handles_labels();fig.legend(handles,labels,loc='upper right',bbox_to_anchor=(.97,.99),frameon=False,ncol=2,fontsize=11)
+fig.text(.04,.045,'Validação nos 30% finais · 450 pares por sensor · modelos ajustados apenas nos 70% iniciais',fontsize=11,color='#53685c')
+fig.text(.04,.012,'Menor RMSE e viés próximo de zero são desejáveis. As linhas comparam versões da leitura, não horários.',fontsize=10.5,color='#53685c')
+finish(fig,'umidade-solo',rect=(0,.085,1,.93))
 
 r=rows(repo,'02_umidade_solo/resultados/calibracao_laboratorial_cs625/tabelas/metricas_comparacao_curvas_cs625.csv')
 fig,ax=plt.subplots(figsize=(10,4.7));ax.set_facecolor('#faf9f5')

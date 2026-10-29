@@ -11,7 +11,7 @@ live=url.startswith('https:')
 report={'live':live,'projects':len(projects),'checks':[]}
 with sync_playwright() as pw:
  browser=pw.chromium.launch(executable_path='C:/Program Files/Google/Chrome/Application/chrome.exe',headless=True)
- if not live:
+ if not live and '--skip-pdfs' not in sys.argv:
   page=browser.new_page()
   for p in projects:
    page.goto((ROOT/'_build'/('ficha-'+p['id']+'.html')).as_uri(),wait_until='load')
@@ -38,6 +38,10 @@ with sync_playwright() as pw:
    page.wait_for_function("document.querySelector('.detail-figure img').complete && document.querySelector('.detail-figure img').naturalWidth>0")
    assert page.locator('.brief-link').get_attribute('href')=='trabalhos/ficha-'+p['id']+'.pdf'
    assert page.locator('.source-link').get_attribute('href')==p['sourceUrl']
+   if p.get('background'):
+    assert page.locator('.project-context').is_visible()
+    assert p['contribution'] in page.locator('.project-context').inner_text()
+    assert page.locator('.related-source').evaluate_all('(nodes)=>nodes.map(n=>n.getAttribute("href"))')==[s['url'] for s in p['relatedSources']]
    assert page.evaluate("document.querySelector('dialog').scrollWidth<=document.querySelector('dialog').clientWidth+1")
    if p['id']=='estacao-et':
     page.screenshot(path=str(OUT/(('live-' if live else '')+label+'-detail.png')),full_page=False)

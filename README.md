@@ -8,7 +8,7 @@ Site: https://heitorxr.github.io/acervo-estatistica/
 
 - Seis estudos reunidos em uma página, com filtros por área.
 - Pergunta, métodos, leitura dos resultados e limitações em cada estudo.
-- Gráficos ampliáveis, seis fichas de uma página em PDF, relatório meteorológico e apresentação histórica.
+- Gráficos ampliáveis, seis fichas em PDF (as duas de sensores com contexto técnico ampliado), relatório meteorológico e apresentação histórica.
 - Link direto para o painel Faces do voto.
 - Os materiais de origem e os códigos continuam nos repositórios originais, sem alteração.
 - O site funciona sem servidor de aplicação e não utiliza rastreadores nem formulário de coleta.

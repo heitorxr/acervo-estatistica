@@ -2,9 +2,16 @@
   {
     "repo": "acervo-de-contribuicoes-Heitor-Fernandes-Simepar",
     "revision": "7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed",
-    "path": "01_estacao_et/resultados/calibracao_empirica/tabelas/metricas_calibracao_empirica.csv",
-    "url": "https://raw.githubusercontent.com/heitorxr/acervo-de-contribuicoes-Heitor-Fernandes-Simepar/7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed/01_estacao_et/resultados/calibracao_empirica/tabelas/metricas_calibracao_empirica.csv",
-    "sha256": "029ceb2f50757d11fc6158a82da64e12f9161227f3f3280f603dfc1ed55ed78c"
+    "path": "01_estacao_et/resultados/temperatura/tabelas/intervalos_confianca_temperatura_bootstrap_blocos.csv",
+    "url": "https://raw.githubusercontent.com/heitorxr/acervo-de-contribuicoes-Heitor-Fernandes-Simepar/7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed/01_estacao_et/resultados/temperatura/tabelas/intervalos_confianca_temperatura_bootstrap_blocos.csv",
+    "sha256": "377e465b6f041b66db9048cbf67099e2f549e4b578a2458a9cdf0c9b48374340"
+  },
+  {
+    "repo": "acervo-de-contribuicoes-Heitor-Fernandes-Simepar",
+    "revision": "7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed",
+    "path": "01_estacao_et/resultados/umidade/tabelas/intervalos_confianca_umidade_bootstrap_blocos.csv",
+    "url": "https://raw.githubusercontent.com/heitorxr/acervo-de-contribuicoes-Heitor-Fernandes-Simepar/7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed/01_estacao_et/resultados/umidade/tabelas/intervalos_confianca_umidade_bootstrap_blocos.csv",
+    "sha256": "d0b5d485999b8d98c517b21e1ab21df06808c60e760462c5c64fe86a88f718d6"
   },
   {
     "repo": "acervo-de-contribuicoes-Heitor-Fernandes-Simepar",
