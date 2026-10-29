@@ -1,0 +1,51 @@
+[
+  {
+    "repo": "acervo-de-contribuicoes-Heitor-Fernandes-Simepar",
+    "revision": "7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed",
+    "path": "01_estacao_et/resultados/calibracao_empirica/tabelas/metricas_calibracao_empirica.csv",
+    "url": "https://raw.githubusercontent.com/heitorxr/acervo-de-contribuicoes-Heitor-Fernandes-Simepar/7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed/01_estacao_et/resultados/calibracao_empirica/tabelas/metricas_calibracao_empirica.csv",
+    "sha256": "029ceb2f50757d11fc6158a82da64e12f9161227f3f3280f603dfc1ed55ed78c"
+  },
+  {
+    "repo": "acervo-de-contribuicoes-Heitor-Fernandes-Simepar",
+    "revision": "7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed",
+    "path": "02_umidade_solo/contribuicoes/validacao_pc01_pc03_cs_20261002_a_20261007/resultados/tabelas/validacao_temporal_70_30.csv",
+    "url": "https://raw.githubusercontent.com/heitorxr/acervo-de-contribuicoes-Heitor-Fernandes-Simepar/7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed/02_umidade_solo/contribuicoes/validacao_pc01_pc03_cs_20261002_a_20261007/resultados/tabelas/validacao_temporal_70_30.csv",
+    "sha256": "3642d8521044e45ba924a55eb121b82cbc811edacb7b76c3c77ab1ed09cbfd84"
+  },
+  {
+    "repo": "acervo-de-contribuicoes-Heitor-Fernandes-Simepar",
+    "revision": "7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed",
+    "path": "02_umidade_solo/resultados/calibracao_laboratorial_cs625/tabelas/metricas_comparacao_curvas_cs625.csv",
+    "url": "https://raw.githubusercontent.com/heitorxr/acervo-de-contribuicoes-Heitor-Fernandes-Simepar/7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed/02_umidade_solo/resultados/calibracao_laboratorial_cs625/tabelas/metricas_comparacao_curvas_cs625.csv",
+    "sha256": "e4b8845e2dc5ff5e819080de59fe61988577c3723bce6e52581bab9537eebe96"
+  },
+  {
+    "repo": "av1-visualizacao-simepar",
+    "revision": "4fd8208a79b02b9d44834ccf5b3996174db0e2f3",
+    "path": "resultados/AV1_frente.png",
+    "url": "https://raw.githubusercontent.com/heitorxr/av1-visualizacao-simepar/4fd8208a79b02b9d44834ccf5b3996174db0e2f3/resultados/AV1_frente.png",
+    "sha256": "3555cb9d92254a59cd884c443b932b8e2736240920db317d39d892dca91499e7"
+  },
+  {
+    "repo": "av1-visualizacao-simepar",
+    "revision": "4fd8208a79b02b9d44834ccf5b3996174db0e2f3",
+    "path": "resultados/AV1_frente_verso_A4.pdf",
+    "url": "https://raw.githubusercontent.com/heitorxr/av1-visualizacao-simepar/4fd8208a79b02b9d44834ccf5b3996174db0e2f3/resultados/AV1_frente_verso_A4.pdf",
+    "sha256": "57f8237af3615576b8f1fa4a00896a2600a0488b8592f3e52d3e085b32591617"
+  },
+  {
+    "repo": "viazualisa-o-de-graficos-de-maneira-moderna",
+    "revision": "80d5abab6636d3ff8a603490b1d5109a716d8318",
+    "path": "imagens/van_langren_moderno.png",
+    "url": "https://raw.githubusercontent.com/heitorxr/viazualisa-o-de-graficos-de-maneira-moderna/80d5abab6636d3ff8a603490b1d5109a716d8318/imagens/van_langren_moderno.png",
+    "sha256": "6be4d19b945d1cb9edb0e372eaed910a070fe6bac9f1cf612804fd6ed0cdc657"
+  },
+  {
+    "repo": "viazualisa-o-de-graficos-de-maneira-moderna",
+    "revision": "80d5abab6636d3ff8a603490b1d5109a716d8318",
+    "path": "viazualisação_de_graficos_de_maneira_moderna.pdf",
+    "url": "https://raw.githubusercontent.com/heitorxr/viazualisa-o-de-graficos-de-maneira-moderna/80d5abab6636d3ff8a603490b1d5109a716d8318/viazualisa%C3%A7%C3%A3o_de_graficos_de_maneira_moderna.pdf",
+    "sha256": "140ab1205ac99a8a5240a397caa1e534e3ec641db6f83769d52c7682ff0991e4"
+  }
+]
