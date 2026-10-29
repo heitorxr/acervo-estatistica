@@ -59,14 +59,6 @@ fig.text(.04,.045,'Validação nos 30% finais · 450 pares por sensor · modelos
 fig.text(.04,.012,'Menor RMSE e viés próximo de zero são desejáveis. As linhas comparam versões da leitura, não horários.',fontsize=10.5,color='#53685c')
 finish(fig,'umidade-solo',rect=(0,.085,1,.93))
 
-r=rows(repo,'02_umidade_solo/resultados/calibracao_laboratorial_cs625/tabelas/metricas_comparacao_curvas_cs625.csv')
-fig,ax=plt.subplots(figsize=(10,4.7));ax.set_facecolor('#faf9f5')
-for i,(key,label,color) in enumerate([('rmse_ajuste_ponto_percentual','No ajuste',GREEN),('rmse_loocv_ponto_percentual','LOOCV',OCHRE)]):
- vals=[value(next(x for x in r if x['modelo']==model),key) for model in ['linear_especifica_diagnostica','quadratica_especifica']]
- pos=[j+(i-.5)*.32 for j in range(2)];ax.bar(pos,vals,width=.29,label=label,color=color)
- for x,v in zip(pos,vals):ax.text(x,v+.13,f'{v:.2f}'.replace('.',','),ha='center',fontsize=12)
-ax.set_xticks([0,1],['Linear diagnóstica','Quadrática específica']);ax.set_ylim(0,10);ax.set_ylabel('RMSE · pontos percentuais');ax.set_title('Ajustar bem não é o mesmo que validar',loc='left',fontweight='bold',pad=20);ax.legend(frameon=False,loc='upper left');ax.grid(axis='y',alpha=.13);ax.set_axisbelow(True);finish(fig,'calibracao-cs625')
-
 download('av1-visualizacao-simepar','resultados/AV1_frente.png',ASSETS/'meteorologia.png')
 download('av1-visualizacao-simepar','resultados/AV1_frente_verso_A4.pdf',DOCS/'visualizacao-simepar.pdf')
 download('viazualisa-o-de-graficos-de-maneira-moderna','imagens/van_langren_moderno.png',ASSETS/'historico.png')

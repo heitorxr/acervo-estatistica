@@ -3,7 +3,7 @@ from pathlib import Path
 import json,html
 ROOT=Path(__file__).resolve().parents[1]
 projects=json.loads((ROOT/'projetos.json').read_text(encoding='utf-8'))
-assert len(projects)==6 and len({p['id'] for p in projects})==6
+assert len(projects)==5 and len({p['id'] for p in projects})==5
 escape=html.escape
 cards=[]
 for i,p in enumerate(projects):

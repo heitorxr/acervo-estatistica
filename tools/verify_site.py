@@ -1,4 +1,4 @@
-"""Build six PDF sheets and exercise the real static portfolio in Chromium."""
+"""Build project PDF sheets and exercise the real static portfolio in Chromium."""
 from pathlib import Path
 import json,sys,re,urllib.parse
 from playwright.sync_api import sync_playwright
@@ -21,8 +21,10 @@ with sync_playwright() as pw:
   page=browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1)
   errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
   page.goto(url,wait_until='load',timeout=60000)
-  assert page.locator('article.project').count()==6
-  assert page.locator('article.project:visible').count()==6
+  assert len(projects)==5
+  assert page.locator('#card-calibracao-cs625').count()==0
+  assert page.locator('article.project').count()==len(projects)
+  assert page.locator('article.project:visible').count()==len(projects)
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),label+' overflow'
   page.screenshot(path=str(OUT/(('live-' if live else '')+label+'.png')),full_page=True)
   for category in ['ambiental','visualizacao']:
@@ -55,10 +57,10 @@ with sync_playwright() as pw:
   page.close()
  # Direct links must open the selected work without requiring another click.
  page=browser.new_page(viewport={'width':390,'height':844})
- page.goto(url.split('#')[0]+'#projeto-calibracao-cs625',wait_until='load')
+ page.goto(url.split('#')[0]+'#projeto-umidade-solo',wait_until='load')
  assert page.locator('#project-dialog').is_visible()
- assert page.locator('#detail-title').inner_text()==projects[2]['title']
+ assert page.locator('#detail-title').inner_text()==projects[1]['title']
  page.close();browser.close()
-report['checks'].append('deep link to laboratory project')
+report['checks'].append('deep link to soil-moisture project')
 (OUT/('live-report.json' if live else 'report.json')).write_text(json.dumps(report,indent=2),encoding='utf-8')
 print(json.dumps(report,ensure_ascii=True,indent=2))

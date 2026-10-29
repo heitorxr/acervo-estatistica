@@ -21,13 +21,6 @@
     "sha256": "3642d8521044e45ba924a55eb121b82cbc811edacb7b76c3c77ab1ed09cbfd84"
   },
   {
-    "repo": "acervo-de-contribuicoes-Heitor-Fernandes-Simepar",
-    "revision": "7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed",
-    "path": "02_umidade_solo/resultados/calibracao_laboratorial_cs625/tabelas/metricas_comparacao_curvas_cs625.csv",
-    "url": "https://raw.githubusercontent.com/heitorxr/acervo-de-contribuicoes-Heitor-Fernandes-Simepar/7c2b2e6601ff1c5bedac868066db6dc9a0dfc3ed/02_umidade_solo/resultados/calibracao_laboratorial_cs625/tabelas/metricas_comparacao_curvas_cs625.csv",
-    "sha256": "e4b8845e2dc5ff5e819080de59fe61988577c3723bce6e52581bab9537eebe96"
-  },
-  {
     "repo": "av1-visualizacao-simepar",
     "revision": "4fd8208a79b02b9d44834ccf5b3996174db0e2f3",
     "path": "resultados/AV1_frente.png",
