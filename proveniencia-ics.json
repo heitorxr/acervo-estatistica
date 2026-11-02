@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ic-rotacoes-simetria",
+    "document": "trabalhos/ic-rotacoes-simetria.pdf",
+    "sha256": "b93f1964d6af21befe9878397ffe5f78e292be071a9384933a1d068e8c3c26bd",
+    "pages": 102,
+    "preview": "assets/ic-rotacoes-simetria.png",
+    "previewPage": 98,
+    "preparation": "Cópia integral autorizada pelo autor; créditos e referências preservados. Prévia renderizada de uma página real, sem reconstrução dos resultados."
+  },
+  {
+    "id": "ic-fisica-estatistica",
+    "document": "trabalhos/ic-fisica-estatistica.pdf",
+    "sha256": "df358dbf7355c31bb02952a442087fe5b889110f06eadb3113e7fad31a3f992b",
+    "pages": 26,
+    "preview": "assets/ic-fisica-estatistica.png",
+    "previewPage": 24,
+    "preparation": "Cópia integral autorizada pelo autor; créditos e referências preservados. Prévia renderizada de uma página real, sem reconstrução dos resultados."
+  }
+]

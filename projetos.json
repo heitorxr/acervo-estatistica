@@ -90,5 +90,66 @@
     "sourceUrl": "https://github.com/heitorxr/viazualisa-o-de-graficos-de-maneira-moderna",
     "workUrl": "trabalhos/visualizacoes-historicas.pdf",
     "workLabel": "Ver apresentação completa"
+  },
+  {
+    "id": "ic-rotacoes-simetria",
+    "title": "Rotações e simetria",
+    "label": "IC em Matemática",
+    "category": "pesquisa",
+    "summary": "Apresentação de iniciação científica sobre simetrias do tetraedro e da bipirâmide triangular, com animações autorais de rotações.",
+    "tags": [
+      "Iniciação científica",
+      "Geometria",
+      "Simetrias",
+      "Animações"
+    ],
+    "background": "Estudo realizado na iniciação científica orientada pelo professor Carlos Eduardo Durán Fernández. A apresentação está datada de 30 de julho de 2024 e identifica o livro Groups and Symmetry, de M. A. Armstrong, como referência de estudo.",
+    "contribution": "Preparei a apresentação dos conteúdos estudados e as animações de rotação identificadas como autorais. As figuras e referências de terceiros permanecem creditadas no documento.",
+    "question": "Como descrever geometricamente rotações que preservam um tetraedro ou uma bipirâmide triangular?",
+    "methods": [
+      "Estudo de eixos e ângulos de rotação do tetraedro, ilustrados por sequências de animação.",
+      "Identificação de rotações da bipirâmide triangular e de relações de composição entre as operações.",
+      "Apresentação dos conteúdos estudados a partir de Armstrong, com créditos das figuras e bibliografia."
+    ],
+    "finding": "Os exemplos relacionam os eixos e ângulos de rotação à composição de operações de simetria. As sequências de quadros permitem acompanhar visualmente as rotações do tetraedro; a parte final apresenta relações entre operações da bipirâmide triangular.",
+    "limit": "O material é uma apresentação dos conteúdos estudados em IC em Matemática, com base na bibliografia identificada, e não um relatório de análise estatística de dados. As animações autorais e as figuras de referência mantêm seus créditos. A data da apresentação não define o período completo da IC.",
+    "image": "assets/ic-rotacoes-simetria.png",
+    "imageAlt": "Página da apresentação mostrando as simetrias rotacionais de um tetraedro, com crédito da figura.",
+    "caption": "Página 98 da apresentação original. As figuras mantêm seus créditos; as animações autorais aparecem nas páginas anteriores.",
+    "sourceUrl": "https://heitorxr.github.io/acervo-estatistica/trabalhos/ic-rotacoes-simetria.pdf",
+    "workUrl": "trabalhos/ic-rotacoes-simetria.pdf",
+    "workLabel": "Ver apresentação completa",
+    "relatedSources": []
+  },
+  {
+    "id": "ic-fisica-estatistica",
+    "title": "Modelos hierárquicos para turbulência em fluidos e sistemas complexos",
+    "label": "IC em Física estatística · CNPq",
+    "category": "pesquisa",
+    "summary": "Iniciação científica na UFPR, com bolsa CNPq, integrando processos estocásticos, simulação numérica e análise estatística de vento do observatório ATTO.",
+    "tags": [
+      "Iniciação científica",
+      "CNPq",
+      "Processos estocásticos",
+      "Turbulência"
+    ],
+    "background": "Relatório final de 2025 de Heitor Cardoso Fernandes, orientado pelo professor Giovani L. Vasconcelos na Universidade Federal do Paraná. O estudo relaciona modelos hierárquicos com variância flutuante à descrição estatística da turbulência atmosférica. A bolsa CNPq foi confirmada pelo autor.",
+    "contribution": "No trabalho de iniciação científica, reuni o estudo de processos estocásticos, simulações numéricas e análise de dados observacionais do Amazon Tall Tower Observatory (ATTO). O relatório documenta as etapas e os resultados, com orientação e referências identificadas. As medições do ATTO não são apresentadas como coleta própria.",
+    "question": "Como modelos de variância flutuante descrevem as distribuições dos incrementos de velocidade do vento e suas caudas mais largas que a gaussiana?",
+    "methods": [
+      "Estudo de caminhada aleatória, Wiener, cálculo de Itô, Langevin, Ornstein–Uhlenbeck e Fokker–Planck, com mistura de gaussianas e distribuição K (pp. 5–14 do PDF).",
+      "Simulações de caminhadas aleatórias e integração do processo de Ornstein–Uhlenbeck por Euler–Maruyama (pp. 15–21).",
+      "Análise de séries de vento do ATTO com média móvel, incrementos, estimativa de densidade por kernel e comparação entre alturas; exclusão da altura de 196 m por anomalias atribuídas ao sensor (pp. 22–24).",
+      "Ajuste de uma forma generalizada da distribuição K aos histogramas de incrementos normalizados das três componentes do vento a 298 m, por erro em escala logarítmica (pp. 24–25)."
+    ],
+    "finding": "As simulações são comparadas com distribuições teóricas. Nos dados do ATTO, os histogramas apresentam caudas alargadas e os ajustes K mostram concordância visual com as densidades empíricas. As figuras são as do relatório original; esta publicação não executa novamente a análise nem acrescenta estimativas.",
+    "limit": "O relatório não apresenta tabelas de parâmetros ajustados, incertezas ou testes quantitativos de qualidade do ajuste. A normalização da forma generalizada ajustada requer verificação; a formulação par apresentada também não sustenta, por si só, uma conclusão sobre assimetria. Suavização, filtragem e exclusão de sensor limitam a interpretação das caudas. A publicação preserva o relatório como registro acadêmico, sem tratar o ajuste visual como validação definitiva ou alegar reprodutibilidade sem código e dados.",
+    "image": "assets/ic-fisica-estatistica.png",
+    "imageAlt": "Figuras 24 e 25 do relatório de IC, com histogramas de incrementos do vento do ATTO e curvas ajustadas da distribuição K.",
+    "caption": "Recorte das figuras 24 e 25, na página 24 do PDF original (página impressa 23): ajustes aos incrementos de vento na altura de 298 m. Dados observacionais: ATTO.",
+    "relatedSources": [],
+    "sourceUrl": "https://heitorxr.github.io/acervo-estatistica/trabalhos/ic-fisica-estatistica.pdf",
+    "workUrl": "trabalhos/ic-fisica-estatistica.pdf",
+    "workLabel": "Ver relatório final completo"
   }
 ]

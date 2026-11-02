@@ -21,13 +21,14 @@ with sync_playwright() as pw:
   page=browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1)
   errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
   page.goto(url,wait_until='load',timeout=60000)
-  assert len(projects)==5
+  assert len({p['id'] for p in projects})==len(projects)
+  assert page.locator('#result-count').inner_text()==str(len(projects))+' trabalhos'
   assert page.locator('#card-calibracao-cs625').count()==0
   assert page.locator('article.project').count()==len(projects)
   assert page.locator('article.project:visible').count()==len(projects)
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),label+' overflow'
   page.screenshot(path=str(OUT/(('live-' if live else '')+label+'.png')),full_page=True)
-  for category in ['ambiental','visualizacao']:
+  for category in sorted({p['category'] for p in projects}):
    page.locator('[data-filter="'+category+'"]').click()
    expected=sum(p['category']==category for p in projects)
    assert page.locator('article.project:visible').count()==expected
@@ -40,6 +41,8 @@ with sync_playwright() as pw:
    page.wait_for_function("document.querySelector('.detail-figure img').complete && document.querySelector('.detail-figure img').naturalWidth>0")
    assert page.locator('.brief-link').get_attribute('href')=='trabalhos/ficha-'+p['id']+'.pdf'
    assert page.locator('.source-link').get_attribute('href')==p['sourceUrl']
+   if p.get('workUrl'):
+    assert page.locator('.work-link').get_attribute('href')==p['workUrl']
    if p.get('background'):
     assert page.locator('.project-context').is_visible()
     assert p['contribution'] in page.locator('.project-context').inner_text()

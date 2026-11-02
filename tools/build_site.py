@@ -3,17 +3,19 @@ from pathlib import Path
 import json,html
 ROOT=Path(__file__).resolve().parents[1]
 projects=json.loads((ROOT/'projetos.json').read_text(encoding='utf-8'))
-assert len(projects)==5 and len({p['id'] for p in projects})==5
+assert projects and len({p['id'] for p in projects})==len(projects)
+categories={'ambiental':'Análise ambiental','visualizacao':'Visualização de dados','pesquisa':'Iniciação científica'}
+assert all(p['category'] in categories for p in projects)
 escape=html.escape
 cards=[]
 for i,p in enumerate(projects):
- category='Análise ambiental' if p['category']=='ambiental' else 'Visualização de dados'
+ category=categories[p['category']]
  cards.append(f'''<article class="project{' featured' if i==0 else ''}" data-category="{p['category']}" id="card-{p['id']}">
 <button type="button" class="preview" data-project="{p['id']}" aria-label="Ver estudo: {escape(p['title'])}"><img src="{p['image']}" alt="{escape(p['imageAlt'])}" {'loading="lazy"' if i else 'fetchpriority="high"'} width="1200" height="650"></button>
 <div class="project-body"><p class="category">{category} · {escape(p['label'])}</p><h3>{escape(p['title'])}</h3><p class="summary">{escape(p['summary'])}</p><ul class="tags" aria-label="Métodos e ferramentas">{''.join('<li>'+escape(t)+'</li>' for t in p['tags'])}</ul><button class="read-study" type="button" data-project="{p['id']}">Ver estudo <span aria-hidden="true">↗</span></button><noscript><a href="trabalhos/ficha-{p['id']}.pdf">Ver ficha em PDF</a></noscript></div></article>''')
 serialized=json.dumps(projects,ensure_ascii=False).replace('<','\\u003c')
 template=(ROOT/'index.template.html').read_text(encoding='utf-8')
-index=template.replace('__CARDS__','\n'.join(cards)).replace('__PROJECTS__',serialized)
+index=template.replace('__CARDS__','\n'.join(cards)).replace('__PROJECTS__',serialized).replace('__TOTAL__',str(len(projects)))
 assert '__CARDS__' not in index and '__PROJECTS__' not in index
 (ROOT/'index.html').write_text(index,encoding='utf-8')
 (ROOT/'.nojekyll').write_text('',encoding='utf-8')
