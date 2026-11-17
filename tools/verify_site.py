@@ -41,6 +41,12 @@ with sync_playwright() as pw:
    page.wait_for_function("document.querySelector('.detail-figure img').complete && document.querySelector('.detail-figure img').naturalWidth>0")
    assert page.locator('.brief-link').get_attribute('href')=='trabalhos/ficha-'+p['id']+'.pdf'
    assert page.locator('.source-link').get_attribute('href')==p['sourceUrl']
+   if p.get('limit'):
+    assert page.locator('#project-dialog .limit').inner_text().endswith(p['limit'])
+   else:
+    assert page.locator('#project-dialog .limit').count()==0, 'empty scope section must not be displayed'
+    assert 'Escopo e interpretação' not in page.locator('#project-dialog').inner_text()
+   assert p['finding'] in page.locator('#project-dialog').inner_text()
    if p.get('workUrl'):
     assert page.locator('.work-link').get_attribute('href')==p['workUrl']
    if p.get('background'):
