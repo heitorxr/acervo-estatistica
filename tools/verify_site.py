@@ -46,7 +46,13 @@ with sync_playwright() as pw:
    else:
     assert page.locator('#project-dialog .limit').count()==0, 'empty scope section must not be displayed'
     assert 'Escopo e interpretação' not in page.locator('#project-dialog').inner_text()
-   assert p['finding'] in page.locator('#project-dialog').inner_text()
+   if p.get('finding'):
+    assert p['finding'] in page.locator('#project-dialog').inner_text()
+    assert 'O que observar no resultado' in page.locator('#project-dialog').inner_text()
+   else:
+    assert 'O que observar no resultado' not in page.locator('#project-dialog').inner_text(), 'empty results section must not be displayed'
+    if not live:
+     assert '<h2>Leitura dos resultados</h2>' not in (ROOT/'_build'/('ficha-'+p['id']+'.html')).read_text(encoding='utf-8'), 'empty printable results section must not be displayed'
    if p.get('workUrl'):
     assert page.locator('.work-link').get_attribute('href')==p['workUrl']
    if p.get('background'):
