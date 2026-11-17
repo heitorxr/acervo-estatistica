@@ -133,8 +133,8 @@
       "Processos estocásticos",
       "Turbulência"
     ],
-    "background": "Relatório final de 2025 de Heitor Cardoso Fernandes, orientado pelo professor Giovani L. Vasconcelos na Universidade Federal do Paraná. O estudo relaciona modelos hierárquicos com variância flutuante à descrição estatística da turbulência atmosférica. A bolsa CNPq foi confirmada pelo autor.",
-    "contribution": "No trabalho de iniciação científica, reuni o estudo de processos estocásticos, simulações numéricas e análise de dados observacionais do Amazon Tall Tower Observatory (ATTO). O relatório documenta as etapas e os resultados, com orientação e referências identificadas. As medições do ATTO não são apresentadas como coleta própria.",
+    "background": "Realizei esta iniciação científica na Universidade Federal do Paraná, com bolsa do CNPq e orientação do professor Giovani L. Vasconcelos. O relatório final, de 2025, relaciona modelos hierárquicos com variância flutuante à descrição estatística da turbulência atmosférica.",
+    "contribution": "No trabalho de iniciação científica, reuni o estudo de processos estocásticos, simulações numéricas e análise de dados observacionais do Amazon Tall Tower Observatory (ATTO). O relatório documenta as etapas e os resultados, com orientação e referências identificadas.",
     "question": "Como modelos de variância flutuante descrevem as distribuições dos incrementos de velocidade do vento e suas caudas mais largas que a gaussiana?",
     "methods": [
       "Estudo de caminhada aleatória, Wiener, cálculo de Itô, Langevin, Ornstein–Uhlenbeck e Fokker–Planck, com mistura de gaussianas e distribuição K (pp. 5–14 do PDF).",
@@ -142,8 +142,8 @@
       "Análise de séries de vento do ATTO com média móvel, incrementos, estimativa de densidade por kernel e comparação entre alturas; exclusão da altura de 196 m por anomalias atribuídas ao sensor (pp. 22–24).",
       "Ajuste de uma forma generalizada da distribuição K aos histogramas de incrementos normalizados das três componentes do vento a 298 m, por erro em escala logarítmica (pp. 24–25)."
     ],
-    "finding": "As simulações são comparadas com distribuições teóricas. Nos dados do ATTO, os histogramas apresentam caudas alargadas e os ajustes K mostram concordância visual com as densidades empíricas. As figuras são as do relatório original; esta publicação não executa novamente a análise nem acrescenta estimativas.",
-    "limit": "O relatório não apresenta tabelas de parâmetros ajustados, incertezas ou testes quantitativos de qualidade do ajuste. A normalização da forma generalizada ajustada requer verificação; a formulação par apresentada também não sustenta, por si só, uma conclusão sobre assimetria. Suavização, filtragem e exclusão de sensor limitam a interpretação das caudas. A publicação preserva o relatório como registro acadêmico, sem tratar o ajuste visual como validação definitiva ou alegar reprodutibilidade sem código e dados.",
+    "finding": "As simulações são comparadas com distribuições teóricas. Nos dados do ATTO, os histogramas apresentam caudas alargadas e os ajustes K mostram concordância visual com as densidades empíricas.",
+    "limit": "",
     "image": "assets/ic-fisica-estatistica.png",
     "imageAlt": "Figuras 24 e 25 do relatório de IC, com histogramas de incrementos do vento do ATTO e curvas ajustadas da distribuição K.",
     "caption": "Recorte das figuras 24 e 25, na página 24 do PDF original (página impressa 23): ajustes aos incrementos de vento na altura de 298 m. Dados observacionais: ATTO.",
