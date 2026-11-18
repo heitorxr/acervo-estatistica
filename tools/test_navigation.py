@@ -41,6 +41,13 @@ class PrintableLinksTests(unittest.TestCase):
     def tearDownClass(cls):
         cls.temp.cleanup()
 
+    def test_about_uses_the_approved_short_source_credit(self):
+        index = (self.output / 'index.html').read_text(encoding='utf-8')
+        approved = '<p>Os materiais originais e seus créditos são preservados nos links de cada estudo.</p>'
+        self.assertTrue(approved in index, 'The approved source credit must be a standalone paragraph')
+        self.assertFalse('As descrições distinguem resultados, métodos e limitações.' in index)
+        self.assertFalse('dados individuais restritos e arquivos privados não são distribuídos aqui' in index)
+
     def test_teaching_archive_is_reachable_from_the_portfolio(self):
         parser = AnchorParser()
         parser.feed((self.output / 'index.html').read_text(encoding='utf-8'))
