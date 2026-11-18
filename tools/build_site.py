@@ -1,7 +1,9 @@
 """Build static HTML and printable project sheets from one canonical catalog."""
 from pathlib import Path
 import json,html
+from urllib.parse import urljoin
 ROOT=Path(__file__).resolve().parents[1]
+SITE_BASE='https://heitorxr.github.io/acervo-estatistica/'
 projects=json.loads((ROOT/'projetos.json').read_text(encoding='utf-8'))
 assert projects and len({p['id'] for p in projects})==len(projects)
 categories={'ambiental':'Análise ambiental','visualizacao':'Visualização de dados','pesquisa':'Iniciação científica'}
@@ -27,11 +29,13 @@ for p in projects:
  analysis_start=('<section style="break-before:page"><div class="byline">'+escape(p['label'])+' · RESULTADOS E INTERPRETAÇÃO</div>') if context else ''
  analysis_end='</section>' if context else ''
  image_style=' style="height:340px"' if context else ''
- work=f'<a href="{escape(p["workUrl"] if p["workUrl"].startswith("https:") else "https://heitorxr.github.io/acervo-estatistica/"+p["workUrl"])}">{escape(p["workLabel"])}</a> · ' if p.get('workUrl') else ''
+ work=f'<a href="{escape(urljoin(SITE_BASE,p["workUrl"]))}">{escape(p["workLabel"])}</a>' if p.get('workUrl') else ''
+ same_document=p.get('workUrl') and urljoin(SITE_BASE,p['workUrl'])==urljoin(SITE_BASE,p['sourceUrl'])
+ source_link='' if same_document else (' · ' if work else '')+f'<a href="{escape(p["sourceUrl"])}">Materiais de origem e documentação</a>'
  results=('<h2>Leitura dos resultados</h2><p>'+escape(p['finding'])+'</p>') if p.get('finding') else ''
  scope=('<div class="scope"><h2>Escopo e interpretação</h2><p>'+escape(p['limit'])+'</p></div>') if p.get('limit') else ''
  page=f'''<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>{escape(p['label'])} — Heitor Cardoso Fernandes</title><style>
 @page{{size:A4;margin:16mm 18mm}}*{{box-sizing:border-box}}body{{font:12pt/1.35 Arial,sans-serif;color:#293c35;margin:0}}.byline{{font-size:10pt;color:#567065;border-bottom:1px solid #cad7cd;padding-bottom:8pt;margin-bottom:14pt}}h1{{font:24pt/1.12 Georgia,serif;color:#193b32;margin:0 0 12pt}}h2{{font-size:12pt;color:#193b32;margin:12pt 0 5pt}}p{{margin:0 0 8pt}}.question{{font-size:12pt}}img{{display:block;width:100%;height:170px;object-fit:contain;background:#faf9f5;margin:10pt 0 4pt}}.caption{{font-size:9pt;color:#567065}}ul{{padding-left:15pt;margin:0}}li{{margin-bottom:3pt}}.scope{{background:#f1f3ed;padding:8pt 10pt;margin-top:12pt;break-inside:avoid}}.scope h2{{margin-top:0}}.links{{font-size:10pt;margin-top:12pt}}a{{color:#286250}}.tags{{font-size:10pt;color:#567065;margin-bottom:8pt}}
-</style><body><div class="byline">HEITOR CARDOSO FERNANDES · ACERVO DE PROJETOS</div><h1>{escape(p['title'])}</h1><p class="tags">{escape(' · '.join(p['tags']))}</p><p class="question">{escape(p['question'])}</p>{context}<img{image_style} src="{(ROOT/p['image']).as_uri()}" alt="{escape(p['imageAlt'])}"><p class="caption">{escape(p['caption'])}</p>{analysis_start}<h2>Como o estudo foi conduzido</h2><ul>{methods}</ul>{results}{scope}<p class="links">{work}<a href="{escape(p['sourceUrl'])}">Materiais de origem e documentação</a>{related}</p>{analysis_end}</body></html>'''
+</style><body><div class="byline">HEITOR CARDOSO FERNANDES · ACERVO DE PROJETOS</div><h1>{escape(p['title'])}</h1><p class="tags">{escape(' · '.join(p['tags']))}</p><p class="question">{escape(p['question'])}</p>{context}<img{image_style} src="{(ROOT/p['image']).as_uri()}" alt="{escape(p['imageAlt'])}"><p class="caption">{escape(p['caption'])}</p>{analysis_start}<h2>Como o estudo foi conduzido</h2><ul>{methods}</ul>{results}{scope}<p class="links">{work}{source_link}{related}</p>{analysis_end}</body></html>'''
  (BUILD/('ficha-'+p['id']+'.html')).write_text(page,encoding='utf-8')
 print('CATALOGO_GERADO',len(projects),'fichas HTML e index.html')

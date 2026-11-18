@@ -40,7 +40,11 @@ with sync_playwright() as pw:
    assert page.locator('#detail-title').inner_text()==p['title']
    page.wait_for_function("document.querySelector('.detail-figure img').complete && document.querySelector('.detail-figure img').naturalWidth>0")
    assert page.locator('.brief-link').get_attribute('href')=='trabalhos/ficha-'+p['id']+'.pdf'
-   assert page.locator('.source-link').get_attribute('href')==p['sourceUrl']
+   same_document = p.get('workUrl') and urllib.parse.urljoin('https://heitorxr.github.io/acervo-estatistica/', p['workUrl']) == urllib.parse.urljoin('https://heitorxr.github.io/acervo-estatistica/', p['sourceUrl'])
+   if same_document:
+    assert page.locator('.source-link').count()==0, 'do not repeat the original-document button'
+   else:
+    assert page.locator('.source-link').get_attribute('href')==p['sourceUrl']
    if p.get('limit'):
     assert page.locator('#project-dialog .limit').inner_text().endswith(p['limit'])
    else:
